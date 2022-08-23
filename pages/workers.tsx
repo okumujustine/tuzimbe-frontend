@@ -12,17 +12,21 @@ const WorkersPage: NextPage = () => {
     const [workers, setWorkers] = useState<Workers[]>([])
     const [error, setError] = useState<string>("")
     const [modalIsOpen, setIsOpen] = React.useState(false);
+    const [firstName, setFirstName] = React.useState("")
+    const [lastName, setLastName] = React.useState("")
+    const [rate, setRate] = React.useState("")
 
     const getWorkersRequest = async () => {
         setLoading(true)
 
         const workers_or_error = await getWorkers()
         if (typeof workers_or_error !== "string") {
-            console.log(workers_or_error)
             setWorkers(workers_or_error)
         } else {
             setError(workers_or_error)
         }
+
+        setLoading(false)
 
     }
 
@@ -31,7 +35,11 @@ const WorkersPage: NextPage = () => {
     }, [])
 
     const onAddWorker = () => {
-        console.log("onAddWorker")
+        console.log({
+            fName: firstName,
+            lName: lastName,
+            rate: rate
+        })
     }
 
     const onOpenModal = () => {
@@ -63,12 +71,34 @@ const WorkersPage: NextPage = () => {
                     onConfirm={onAddWorker}
                 >
                     <div>
-                        the modal to the moon
+                        <form>
+                            <div className="grid gap-6 mb-6 md:grid-cols-2">
+                                <div>
+                                    <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">First name</label>
+                                    <input
+                                        onChange={(e) => setFirstName(e.target.value)}
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="first name" />
+                                </div>
+                                <div>
+                                    <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Last name</label>
+                                    <input
+                                        onChange={(e) => setLastName(e.target.value)}
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="last name" />
+                                </div>
+                                <div>
+                                    <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Rate</label>
+                                    <input
+                                        onChange={(e) => setRate(e.target.value)}
+                                        type="number" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="rate" />
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </CustomModal>
                 <div>
+                    {isLoading ? <div><p>Loading workers</p></div> : null}
                     <div>
-                        {!error && workers.map(worker =>
+                        {!error && !isLoading && workers.map(worker =>
                             <div key={worker.id}>
                                 <p>{worker.first_name}</p>
                             </div>
