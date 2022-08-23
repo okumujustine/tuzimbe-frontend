@@ -1,5 +1,6 @@
 import type { NextPage } from 'next'
 import { useEffect, useState } from 'react'
+import ClientWrapper from '../components/wrappers/ClientWrapper'
 import { Workers } from '../helpers/workers/types'
 import { getWorkers } from '../resource/getWorkers'
 
@@ -25,9 +26,11 @@ const Home: NextPage = () => {
   }, [])
 
   return (
-    <h1 className="text-3xl font-bold underline text-red-700">
-      Hello world!
-    </h1>
+    <ClientWrapper>
+      <div>
+        <h1>Home screen</h1>
+      </div>
+    </ClientWrapper>
   )
 }
 

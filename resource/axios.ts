@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const tuzimbeApi = axios.create({
-    baseURL: 'https://reqres.in/api/444/tyhg',
+    baseURL: 'http://127.0.0.1:8002',
     headers: {
         'Content-Type': 'application/json',
     }
