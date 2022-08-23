@@ -5,14 +5,7 @@ import { tuzimbeApi } from './axios';
 
 export const getWorkers: () => Promise<string | GetWorkersResponse> = async () => {
     try {
-        const resp = await tuzimbeApi.get<GetWorkersResponse>(
-            '/users',
-            {
-                headers: {
-                    Accept: 'application/json',
-                },
-            },
-        );
+        const resp = await tuzimbeApi.get<GetWorkersResponse>('/users');
         return resp.data;
     } catch (error) {
         return parseError(error)
