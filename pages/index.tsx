@@ -11,11 +11,11 @@ const Home: NextPage = () => {
   const getWorkersRequest = async () => {
     setLoading(true)
 
-    const resp = await getWorkers()
-    if (typeof resp !== "string") {
-      setWorkers(resp.data)
+    const workers_or_error = await getWorkers()
+    if (typeof workers_or_error !== "string") {
+      setWorkers(workers_or_error.data)
     } else {
-      setError(resp)
+      setError(workers_or_error)
     }
 
   }
