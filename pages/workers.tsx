@@ -4,6 +4,7 @@ import CustomModal from '../components/public/Modal'
 
 import ClientWrapper from '../components/wrappers/ClientWrapper'
 import { Workers } from '../helpers/workers/types'
+import { addWorker } from '../resource/addWorker'
 import { getWorkers } from '../resource/getWorkers'
 
 
@@ -34,12 +35,21 @@ const WorkersPage: NextPage = () => {
         getWorkersRequest()
     }, [])
 
-    const onAddWorker = () => {
-        console.log({
-            fName: firstName,
-            lName: lastName,
-            rate: rate
+    const onAddWorker = async () => {
+
+        const workers_or_error = await addWorker({
+            first_name: firstName,
+            last_name: lastName,
+            main_daily_rate: parseInt(rate, 10)
         })
+        if (typeof workers_or_error !== "string") {
+            const new_workers_list = [...workers, workers_or_error]
+            setWorkers(new_workers_list)
+        } else {
+            setError(workers_or_error)
+        }
+        setIsOpen(false)
+
     }
 
     const onOpenModal = () => {

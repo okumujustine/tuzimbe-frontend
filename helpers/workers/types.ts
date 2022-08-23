@@ -7,6 +7,12 @@ export type Workers = {
     created_at: string
 };
 
+export type AddWorkerParams = {
+    first_name: string;
+    last_name: string;
+    main_daily_rate: number,
+}
+
 export type GetWorkersResponse = {
     data: Workers[];
 };
