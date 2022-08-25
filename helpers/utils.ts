@@ -14,3 +14,5 @@ export const parseError: (error: any) => string = (error: any) => {
         return 'An unexpected error occurred';
     }
 }
+
+export const delaySemulator = (ms: any) => new Promise(res => setTimeout(res, ms));
