@@ -1,10 +1,8 @@
 import type { NextPage } from 'next'
-import ReactModal from 'react-modal';
 
 import ClientWrapper from '../components/wrappers/ClientWrapper'
 
 const Home: NextPage = () => {
-  ReactModal.setAppElement('#modals')
   return (
     <ClientWrapper>
       <div>
