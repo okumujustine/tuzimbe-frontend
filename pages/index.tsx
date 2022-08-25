@@ -8,7 +8,7 @@ const Home: NextPage = () => {
     <ClientWrapper>
       <div>
         <h1>Home screen Home screen Home screen Home screenHome screen Home screen</h1>
-        <Link href="/register_worker">
+        <Link href="/register-worker">
           <a>Register worker</a>
         </Link>
         <div id="modals" />
