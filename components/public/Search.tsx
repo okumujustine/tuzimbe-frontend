@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react'
 
 interface Props {
     searchResults: any[],
+    searchValue: string,
+    setSearchValue: (e: any) => void,
     searchingFunc: () => void,
     selectedOption: (option: any) => void
 }
@@ -10,9 +12,10 @@ interface Props {
 export default function Search({
     searchResults,
     searchingFunc,
-    selectedOption
+    selectedOption,
+    searchValue,
+    setSearchValue
 }: Props) {
-    const [searchValue, setSearchValue] = useState("")
     const [searchInputControl, setSearchInputControl] = useState(false)
     const [searching, setSearching] = useState(false)
 

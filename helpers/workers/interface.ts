@@ -1,1 +1,3 @@
-export const inter = ""
+export interface SearchWorker {
+    name: string
+}
