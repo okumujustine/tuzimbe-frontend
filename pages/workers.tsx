@@ -1,8 +1,10 @@
 import { NextPage } from 'next'
 import React, { useEffect, useState } from 'react'
 import CustomModal from '../components/public/Modal'
+import Title from '../components/text/Title'
 
 import ClientWrapper from '../components/wrappers/ClientWrapper'
+import { delaySemulator } from '../helpers/utils'
 import { Workers } from '../helpers/workers/types'
 import { addWorker } from '../resource/addWorker'
 import { getWorkers } from '../resource/getWorkers'
@@ -21,6 +23,7 @@ const WorkersPage: NextPage = () => {
         setLoading(true)
 
         const workers_or_error = await getWorkers()
+        await delaySemulator(2000)
         if (typeof workers_or_error !== "string") {
             setWorkers(workers_or_error)
         } else {
@@ -42,6 +45,7 @@ const WorkersPage: NextPage = () => {
             last_name: lastName,
             main_daily_rate: parseInt(rate, 10)
         })
+
         if (typeof workers_or_error !== "string") {
             const new_workers_list = [...workers, workers_or_error]
             setWorkers(new_workers_list)
@@ -63,11 +67,14 @@ const WorkersPage: NextPage = () => {
     return (
         <ClientWrapper>
             <div>
+                <div>
+                    <Title text="List of all workers" />
+                </div>
                 <button
-                    className="border text-gray-800 border-gray-800 rounded-full px-5 py-3"
+                    className="border text-gray-800 border-gray-800 rounded-full px-5 py-3 mt-3"
                     onClick={onOpenModal}
                 >
-                    Add Worker
+                    Add new worker
                 </button>
                 <CustomModal
                     modalIsOpen={modalIsOpen}
@@ -103,54 +110,55 @@ const WorkersPage: NextPage = () => {
                     </div>
                 </CustomModal>
                 <div className="mt-5">
-                    {isLoading ? <div><p>Loading workers</p></div> : null}
-                    <div>
-                        <table className="min-w-full divide-y divide-gray-200">
-                            <thead className="border-b border-gray-900">
-                                <tr>
-                                    <th
-                                        scope="col"
-                                        className="px-6 py-3 text-left text-xs font-medium text-gray-900 uppercase tracking-wider"
-                                    >
-                                        FIRST NAME
-                                    </th>
-                                    <th
-                                        scope="col"
-                                        className="px-6 py-3 text-left text-xs font-medium text-gray-900 uppercase tracking-wider"
-                                    >
-                                        LAST NAME
-                                    </th>
-                                    <th
-                                        scope="col"
-                                        className="px-6 py-3 text-left text-xs font-medium text-gray-900 uppercase tracking-wider"
-                                    >
-                                        DAILY RATE
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody className="bg-white divide-y divide-gray-200">
-                                {workers && workers.map((worker) => (
-                                    <tr key={worker.id}>
-                                        <td className="px-6 py-4 whitespace-nowrap">
-                                            <div className="flex items-center">
-                                                <div className="text-sm font-medium text-gray-700">{worker.first_name}</div>
-                                            </div>
-                                        </td>
-                                        <td className="px-6 py-4 whitespace-nowrap">
-                                            <div className="flex items-center">
-                                                <div className="text-sm font-medium text-gray-700">{worker.last_name}</div>
-                                            </div>
-                                        </td>
-                                        <td className="px-6 py-4 whitespace-nowrap">
-                                            <div className="flex items-center">
-                                                <div className="text-sm font-medium text-gray-700">{worker.main_rate_currency} {worker.main_daily_rate}</div>
-                                            </div>
-                                        </td>
+                    {isLoading ? <div><p>Loading workers</p></div> :
+                        <div>
+                            <table className="min-w-full divide-y divide-gray-200">
+                                <thead className="border-b border-gray-900">
+                                    <tr>
+                                        <th
+                                            scope="col"
+                                            className="px-6 py-3 text-left text-xs font-medium text-gray-900 uppercase tracking-wider"
+                                        >
+                                            FIRST NAME
+                                        </th>
+                                        <th
+                                            scope="col"
+                                            className="px-6 py-3 text-left text-xs font-medium text-gray-900 uppercase tracking-wider"
+                                        >
+                                            LAST NAME
+                                        </th>
+                                        <th
+                                            scope="col"
+                                            className="px-6 py-3 text-left text-xs font-medium text-gray-900 uppercase tracking-wider"
+                                        >
+                                            DAILY RATE
+                                        </th>
                                     </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
+                                </thead>
+                                <tbody className="bg-white divide-y divide-gray-200">
+                                    {workers && workers.map((worker) => (
+                                        <tr key={worker.id}>
+                                            <td className="px-6 py-4 whitespace-nowrap">
+                                                <div className="flex items-center">
+                                                    <div className="text-sm font-medium text-gray-700">{worker.first_name}</div>
+                                                </div>
+                                            </td>
+                                            <td className="px-6 py-4 whitespace-nowrap">
+                                                <div className="flex items-center">
+                                                    <div className="text-sm font-medium text-gray-700">{worker.last_name}</div>
+                                                </div>
+                                            </td>
+                                            <td className="px-6 py-4 whitespace-nowrap">
+                                                <div className="flex items-center">
+                                                    <div className="text-sm font-medium text-gray-700">{worker.main_rate_currency} {worker.main_daily_rate}</div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    }
                 </div>
             </div>
         </ClientWrapper>

@@ -40,3 +40,8 @@ export const todaysDate = () => {
     const finalTodaysDate = `${formatSplitted[2]}-${finalMonth}-${finalDate}`
     return finalTodaysDate
 }
+
+export const timeFromDateTime = (dateTime: string) => {
+    const datetime = new Date(dateTime)
+    return datetime.toLocaleTimeString();
+}
