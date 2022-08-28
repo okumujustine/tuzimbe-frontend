@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 interface Props {
     searchResults: any[],
     searchValue: string,
+    placeholder?: string,
     setSearchValue: (e: any) => void,
     searchingFunc: () => void,
     selectedOption: (option: any) => void
@@ -14,7 +15,8 @@ export default function Search({
     searchingFunc,
     selectedOption,
     searchValue,
-    setSearchValue
+    setSearchValue,
+    placeholder
 }: Props) {
     const [searchInputControl, setSearchInputControl] = useState(false)
     const [searching, setSearching] = useState(false)
@@ -49,7 +51,7 @@ export default function Search({
                 onChange={(e) => onInputChange(e)}
                 type="search"
                 id="default-search"
-                className="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Mockups, Logos..."
+                className="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder={placeholder ? placeholder : "placeholder here .."}
             />
             {searchInputControl ? <div className="bg-gray-100 mt-1 rounded-md px-4 py-3 text-base">
                 {!searching && searchResults.length <= 0 ? <div><p>no results found</p></div> : null}

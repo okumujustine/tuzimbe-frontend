@@ -4,6 +4,8 @@ import ClientWrapper from '../components/wrappers/ClientWrapper'
 import Search from '../components/public/Search'
 import { delaySemulator } from '../helpers/utils'
 import { searchWorkers } from '../resource/searchWorkers'
+import Title from '../components/text/Title'
+import Back from '../components/Button/Back'
 
 const RegisterWorker: NextPage = () => {
     const [searchResults, setSearchResults] = useState<any[]>([])
@@ -35,14 +37,21 @@ const RegisterWorker: NextPage = () => {
     return (
         <ClientWrapper>
             <div>
-                <Search
-                    searchValue={searchValue}
-                    setSearchValue={setSearchValue}
-                    searchResults={searchResults}
-                    searchingFunc={searchingFunc}
-                    selectedOption={onSelectedOption}
+                <Back
+                    link="/"
                 />
+                <Title text="Add worker to today's attendance list" />
+                <div>
+                    <Search
+                        placeholder="search worker here ..."
+                        searchValue={searchValue}
+                        setSearchValue={setSearchValue}
+                        searchResults={searchResults}
+                        searchingFunc={searchingFunc}
+                        selectedOption={onSelectedOption}
+                    />
 
+                </div>
             </div>
         </ClientWrapper>
     )

@@ -15,7 +15,7 @@ export default function ClientWrapper({ children }: Props) {
                         <li className="py-2">
                             <Link className="p-2" href="/">
                                 <a className="flex text-white p-2 bg-gray-600 rounded-md hover:bg-gray-700">
-                                    <span>Home</span>
+                                    <span>Attendance</span>
                                 </a>
                             </Link>
                         </li>
