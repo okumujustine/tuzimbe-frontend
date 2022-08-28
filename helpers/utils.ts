@@ -16,3 +16,27 @@ export const parseError: (error: any) => string = (error: any) => {
 }
 
 export const delaySemulator = (ms: any) => new Promise(res => setTimeout(res, ms));
+
+export const todaysDate = () => {
+    let today = new Date().toLocaleDateString()
+    const formatSplitted = today.split("/")
+    const month = formatSplitted[0]
+    const date = formatSplitted[1]
+
+    let finalDate
+    if (date.length !== 1) {
+        finalDate = date
+    } else {
+        finalDate = `0${date}`
+    }
+
+    let finalMonth
+    if (month.length !== 1) {
+        finalMonth = month
+    } else {
+        finalMonth = `0${month}`
+    }
+
+    const finalTodaysDate = `${formatSplitted[2]}-${finalMonth}-${finalDate}`
+    return finalTodaysDate
+}

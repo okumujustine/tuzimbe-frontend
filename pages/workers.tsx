@@ -63,11 +63,8 @@ const WorkersPage: NextPage = () => {
     return (
         <ClientWrapper>
             <div>
-                <div>
-                    <h5 className="text-2xl">Workers</h5>
-                </div>
                 <button
-                    className="my-6 text-white bg-gray-700 hover:bg-gray-800 focus:outline-none  font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800"
+                    className="border text-gray-800 border-gray-800 rounded-full px-5 py-3"
                     onClick={onOpenModal}
                 >
                     Add Worker
@@ -105,14 +102,54 @@ const WorkersPage: NextPage = () => {
                         </form>
                     </div>
                 </CustomModal>
-                <div>
+                <div className="mt-5">
                     {isLoading ? <div><p>Loading workers</p></div> : null}
                     <div>
-                        {!error && !isLoading && workers.map(worker =>
-                            <div key={worker.id}>
-                                <p>{worker.first_name}</p>
-                            </div>
-                        )}
+                        <table className="min-w-full divide-y divide-gray-200">
+                            <thead className="border-b border-gray-900">
+                                <tr>
+                                    <th
+                                        scope="col"
+                                        className="px-6 py-3 text-left text-xs font-medium text-gray-900 uppercase tracking-wider"
+                                    >
+                                        FIRST NAME
+                                    </th>
+                                    <th
+                                        scope="col"
+                                        className="px-6 py-3 text-left text-xs font-medium text-gray-900 uppercase tracking-wider"
+                                    >
+                                        LAST NAME
+                                    </th>
+                                    <th
+                                        scope="col"
+                                        className="px-6 py-3 text-left text-xs font-medium text-gray-900 uppercase tracking-wider"
+                                    >
+                                        DAILY RATE
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody className="bg-white divide-y divide-gray-200">
+                                {workers && workers.map((worker) => (
+                                    <tr key={worker.id}>
+                                        <td className="px-6 py-4 whitespace-nowrap">
+                                            <div className="flex items-center">
+                                                <div className="text-sm font-medium text-gray-700">{worker.first_name}</div>
+                                            </div>
+                                        </td>
+                                        <td className="px-6 py-4 whitespace-nowrap">
+                                            <div className="flex items-center">
+                                                <div className="text-sm font-medium text-gray-700">{worker.last_name}</div>
+                                            </div>
+                                        </td>
+                                        <td className="px-6 py-4 whitespace-nowrap">
+                                            <div className="flex items-center">
+                                                <div className="text-sm font-medium text-gray-700">{worker.main_rate_currency} {worker.main_daily_rate}</div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
