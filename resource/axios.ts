@@ -1,7 +1,8 @@
 import axios from 'axios';
 
+
 export const tuzimbeApi = axios.create({
-    baseURL: 'https://tuzimbe.herokuapp.com',
+    baseURL: process.env.BASE_URL,
     headers: {
         'Content-Type': 'application/json',
     }

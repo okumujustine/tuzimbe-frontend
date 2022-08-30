@@ -1,4 +1,5 @@
 ### Tuzimbe client(front-end)
+### Link to [backend repo](https://github.com/okumujustine/tuzimbe-interview-backend)
 
 ##### Deployed link [Tuzimbe frontend](https://tuzimbe.vercel.app/)
 #### Prerequisites
@@ -13,7 +14,9 @@
 ```$ cd  tuzimbe-interview-frontend```
 
 3. install dependencies
-```npm install```
+```$ npm install```
 
-4. Run project
-```npm run dev```
+4. And to `next.config.js`  `BASE_URL:"http://127.0.0.1:8000"` or to point to your backend url
+
+5. Run project
+```$ npm run dev```
