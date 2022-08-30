@@ -116,54 +116,55 @@ const WorkersPage: NextPage = () => {
                     </div>
                 </CustomModal>
                 <div className="mt-5">
-                    {isLoading ? <div><p>Loading workers</p></div> :
-                        <div>
-                            <table className="min-w-full divide-y divide-gray-200">
-                                <thead className="border-b border-gray-900">
-                                    <tr>
-                                        <th
-                                            scope="col"
-                                            className="px-6 py-3 text-left text-xs font-medium text-gray-900 uppercase tracking-wider"
-                                        >
-                                            FIRST NAME
-                                        </th>
-                                        <th
-                                            scope="col"
-                                            className="px-6 py-3 text-left text-xs font-medium text-gray-900 uppercase tracking-wider"
-                                        >
-                                            LAST NAME
-                                        </th>
-                                        <th
-                                            scope="col"
-                                            className="px-6 py-3 text-left text-xs font-medium text-gray-900 uppercase tracking-wider"
-                                        >
-                                            DAILY RATE
-                                        </th>
+                    {isLoading ? <div><p>Loading workers...</p></div> : null}
+                    {!isLoading && workers.length <= 0 ? <p>No workers found, add workers</p> : null}
+                    {!isLoading && workers.length > 0 ? <div>
+                        <table className="min-w-full divide-y divide-gray-200">
+                            <thead className="border-b border-gray-900">
+                                <tr>
+                                    <th
+                                        scope="col"
+                                        className="px-6 py-3 text-left text-xs font-medium text-gray-900 uppercase tracking-wider"
+                                    >
+                                        FIRST NAME
+                                    </th>
+                                    <th
+                                        scope="col"
+                                        className="px-6 py-3 text-left text-xs font-medium text-gray-900 uppercase tracking-wider"
+                                    >
+                                        LAST NAME
+                                    </th>
+                                    <th
+                                        scope="col"
+                                        className="px-6 py-3 text-left text-xs font-medium text-gray-900 uppercase tracking-wider"
+                                    >
+                                        DAILY RATE
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody className="bg-white divide-y divide-gray-200">
+                                {workers && workers.map((worker) => (
+                                    <tr key={worker.id}>
+                                        <td className="px-6 py-4 whitespace-nowrap">
+                                            <div className="flex items-center">
+                                                <div className="text-sm font-medium text-gray-700">{worker.first_name}</div>
+                                            </div>
+                                        </td>
+                                        <td className="px-6 py-4 whitespace-nowrap">
+                                            <div className="flex items-center">
+                                                <div className="text-sm font-medium text-gray-700">{worker.last_name}</div>
+                                            </div>
+                                        </td>
+                                        <td className="px-6 py-4 whitespace-nowrap">
+                                            <div className="flex items-center">
+                                                <div className="text-sm font-medium text-gray-700">{worker.main_rate_currency} {worker.main_daily_rate}</div>
+                                            </div>
+                                        </td>
                                     </tr>
-                                </thead>
-                                <tbody className="bg-white divide-y divide-gray-200">
-                                    {workers && workers.map((worker) => (
-                                        <tr key={worker.id}>
-                                            <td className="px-6 py-4 whitespace-nowrap">
-                                                <div className="flex items-center">
-                                                    <div className="text-sm font-medium text-gray-700">{worker.first_name}</div>
-                                                </div>
-                                            </td>
-                                            <td className="px-6 py-4 whitespace-nowrap">
-                                                <div className="flex items-center">
-                                                    <div className="text-sm font-medium text-gray-700">{worker.last_name}</div>
-                                                </div>
-                                            </td>
-                                            <td className="px-6 py-4 whitespace-nowrap">
-                                                <div className="flex items-center">
-                                                    <div className="text-sm font-medium text-gray-700">{worker.main_rate_currency} {worker.main_daily_rate}</div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
-                        </div>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div> : null
                     }
                 </div>
             </div>

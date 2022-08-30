@@ -112,15 +112,16 @@ const AdminStats: NextPage = () => {
                     <div className="mt-6">
                         {dateToShowRange?.startDateFinal && dateToShowRange?.endDateFinal ?
                             <p>Showing stats for {dateToShowRange?.startDateFinal}  to {dateToShowRange?.endDateFinal}</p>
-                            :
-                            <p>Showing stats for all </p>
+                            : <>
+                                {stats.length > 0 ? <p>Showing stats for all </p> : null}
+                            </>
                         }
 
 
                         <div className="mt-5">
                             {isLoading ? <div><p>Loading materials attendance...</p></div> : null}
                             {!isLoading && stats.length <= 0 ? <div>
-                                <p>No material found current or selected date</p>
+                                <p>No material found with the current (selected) date range</p>
                             </div> : null}
                             {!isLoading && stats.length > 0 ? <div className="flex flex-row flex-wrap">
                                 {stats.map((stat, index) =>

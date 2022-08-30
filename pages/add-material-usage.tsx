@@ -61,6 +61,7 @@ const AddMaterialUsage: NextPage = () => {
                 />
                 <Title text="Add material usage for today" />
                 <Search
+                    from="material"
                     searchValue={searchValue}
                     setSearchValue={setSearchValue}
                     searchResults={searchResults}

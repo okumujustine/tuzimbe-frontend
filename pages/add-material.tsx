@@ -70,9 +70,9 @@ const AddMaterial: NextPage = () => {
                     </div>
 
                     <div className="mt-5">
-                        <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Measurement Methods</label>
+                        <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Measurement</label>
                         {!loadingMeasurementMs && measurementMethods.length < 0 ? <p>no measurement method found ...</p> : null}
-                        {loadingMeasurementMs ? <p>Loading measurement methods ...</p>
+                        {loadingMeasurementMs ? <p>Loading measurement options ...</p>
                             : <div className="">
                                 {measurementMethods.map(mm => <div key={mm.id}>
                                     <input type="radio" name="mm" value={mm.id} onChange={handleMeasurementMethod} />

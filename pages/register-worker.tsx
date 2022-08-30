@@ -76,6 +76,7 @@ const RegisterWorker: NextPage = () => {
                 <Title text="Add worker to today's attendance list" />
                 <div>
                     <Search
+                        from="worker"
                         placeholder="search worker here ..."
                         searchValue={searchValue}
                         setSearchValue={setSearchValue}
