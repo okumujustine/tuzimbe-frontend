@@ -7,10 +7,12 @@ export const valueNotString = () => {
 
 export const parseError: (error: any) => string = (error: any) => {
     if (axios.isAxiosError(error)) {
-        console.log('error message: ', error.message);
+        console.log('error message: ', error.response?.data);
+        if (error.response && error.response?.data && typeof error.response?.data === "string") {
+            return error.response?.data
+        }
         return error.message;
     } else {
-        console.log('unexpected error: ', error);
         return 'An unexpected error occurred';
     }
 }
@@ -45,3 +47,18 @@ export const timeFromDateTime = (dateTime: string) => {
     const datetime = new Date(dateTime)
     return datetime.toLocaleTimeString();
 }
+
+export const formatAMPM = (dateParam: string) => {
+    const date = new Date(dateParam)
+    let hours: any = date.getHours();
+    let minutes: any = date.getMinutes();
+    const ampm = hours >= 12 ? 'pm' : 'am';
+
+    hours %= 12;
+    hours = hours || 12;
+    minutes = minutes < 10 ? `0${minutes}` : minutes;
+
+    const strTime = `${hours}:${minutes} ${ampm}`;
+
+    return strTime;
+};

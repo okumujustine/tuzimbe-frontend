@@ -1,12 +1,15 @@
+import { AddMaterialUsageParams, DailyMaterialUsageFilterParams, MaterialUsage } from '../helpers/materials/types';
 import { parseError } from '../helpers/utils';
-import { AddWorkerParams, Workers } from '../helpers/workers/types';
 import { tuzimbeApi } from './axios';
 
 
-export async function addWorker(workerParams: AddWorkerParams): Promise<string | Workers> {
-    console.log(workerParams)
+export async function addMaterialUsage(
+    params: AddMaterialUsageParams
+): Promise<string | MaterialUsage> {
     try {
-        const resp = await tuzimbeApi.post('/worker/add/', { ...workerParams });
+        const resp = await tuzimbeApi.post(`/material/add_usage/`, {
+            ...params
+        });
         return resp.data;
     } catch (error) {
         return parseError(error)

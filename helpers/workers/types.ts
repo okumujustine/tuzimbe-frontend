@@ -13,6 +13,11 @@ export type AddWorkerParams = {
     main_daily_rate: number,
 }
 
+export type setDepartureTimeParams = {
+    departure_time: string,
+    attendence_pk: number
+}
+
 export type GetWorkersResponse = {
     data: Workers[];
 };
@@ -30,4 +35,11 @@ export type WorkerAttendance = {
 
 export type WorkerAttendanceFilterParams = {
     added_date: string
+}
+
+export type AddWorkerAttendanceParams = {
+    worker: number;
+    arrival_time: string;
+    daily_rate: number,
+    added_date?: string
 }

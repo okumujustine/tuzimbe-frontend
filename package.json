@@ -13,14 +13,18 @@
     "axios": "^0.27.2",
     "next": "12.2.5",
     "react": "18.2.0",
+    "react-datepicker": "^4.8.0",
     "react-dom": "18.2.0",
-    "react-modal": "^3.15.1"
+    "react-modal": "^3.15.1",
+    "react-time-picker": "^4.5.0"
   },
   "devDependencies": {
     "@types/node": "18.7.11",
     "@types/react": "18.0.17",
+    "@types/react-datepicker": "^4.4.2",
     "@types/react-dom": "18.0.6",
     "@types/react-modal": "^3.13.1",
+    "@types/react-time-picker": "^4.0.2",
     "autoprefixer": "^10.4.8",
     "eslint": "8.22.0",
     "eslint-config-next": "12.2.5",

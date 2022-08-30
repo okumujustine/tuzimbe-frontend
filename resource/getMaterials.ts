@@ -1,15 +1,12 @@
-import { SearchMaterial } from '../helpers/materials/interface';
 import { Materials } from '../helpers/materials/types';
 import { parseError } from '../helpers/utils';
 import { tuzimbeApi } from './axios';
 
 
-export const searchMaterials: (params: SearchMaterial) => Promise<string | Materials[]> = async (
-    { name }: SearchMaterial
-) => {
+export const getMaterials: () => Promise<string | Materials[]> = async () => {
     try {
         const resp = await tuzimbeApi.get(
-            `/material/filter/?name__icontains=${name}`
+            "/material/filter/"
         );
         return resp.data;
     } catch (error) {
