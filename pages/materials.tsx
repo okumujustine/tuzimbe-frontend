@@ -5,7 +5,6 @@ import Title from "../components/text/Title"
 import ClientWrapper from "../components/wrappers/ClientWrapper"
 import { Materials } from "../helpers/materials/types"
 import { delaySemulator } from "../helpers/utils"
-import { Workers } from "../helpers/workers/types"
 import { getMaterials } from "../resource/getMaterials"
 
 const MaterialsPage: NextPage = () => {

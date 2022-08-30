@@ -60,9 +60,9 @@ export default function ClientWrapper({ children }: Props) {
                         </ul>
                     </div>
                     <div className="mb-5">
-                        <Link className="p-2" href="/">
-                            <a className="flex text-white p-2 border-gray-100 border rounded-md hover:bg-gray-100 hover:text-gray-800">
-                                <span>Admin</span>
+                        <Link className="p-2" href="/admin-stats">
+                            <a target="_blank" className="flex text-white p-2 border-gray-100 border rounded-md hover:bg-gray-100 hover:text-gray-800">
+                                <span>Owner Admin</span>
                             </a>
                         </Link>
                     </div>

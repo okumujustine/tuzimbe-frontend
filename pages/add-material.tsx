@@ -3,17 +3,13 @@ import ClientWrapper from '../components/wrappers/ClientWrapper'
 import type { NextPage } from 'next'
 import Back from '../components/Button/Back'
 import Title from '../components/text/Title'
-import { getMeasurementMethods } from '../resource/getMeasurementmethods'
+import { getMeasurementMethods } from '../resource/getMeasurementMethods'
 import { delaySemulator } from '../helpers/utils'
 import { MeasurementMethod } from '../helpers/materials/types'
 import { addMaterial } from '../resource/addMaterial'
 
 const AddMaterial: NextPage = () => {
-    // {
-    //     "name": "custom with measurement",
-    //     "measurement_method": 1
-    // }
-    // http://127.0.0.1:8002/material/add_material/
+
     const [measurementMethods, setMeasurementMethods] = useState<MeasurementMethod[]>([])
     const [loadingMeasurementMs, setLoadingMeasurementMs] = useState(false)
     const [measurementMethod, setMeasurementMethod] = useState("")

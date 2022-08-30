@@ -43,3 +43,11 @@ export type AddWorkerAttendanceParams = {
     daily_rate: number,
     added_date?: string
 }
+
+export type MaterialsUsageStatsResp = {
+    material_id: number,
+    measurement_method__name: string,
+    material__name: string,
+    total_price: number,
+    total_quantity: number
+}
