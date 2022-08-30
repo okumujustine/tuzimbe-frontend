@@ -192,7 +192,7 @@ const Home: NextPage = () => {
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
                           <div className="flex items-center">
-                            <div className="text-sm font-medium text-gray-700">{a.departure_time ? timeFromDateTime(a.departure_time) : "nil"}</div>
+                            <div className="text-sm font-medium text-gray-700">{a.departure_time ? timeFromDateTime(a.departure_time) : <span className="text-gray-400">not added</span>}</div>
                           </div>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">

@@ -59,7 +59,7 @@ const AddMaterialUsage: NextPage = () => {
                 <Back
                     link="/list-material-usage"
                 />
-                <Title text="Add material usage for today (sand, cement, bricks, nails)" />
+                <Title text="Add material usage for today" />
                 <Search
                     searchValue={searchValue}
                     setSearchValue={setSearchValue}

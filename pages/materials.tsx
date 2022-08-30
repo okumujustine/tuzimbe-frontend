@@ -48,9 +48,9 @@ const MaterialsPage: NextPage = () => {
                 {!isLoading && materials.length <= 0 ? <div>
                     <p>No material found, add material</p>
                 </div> : null}
-                {!isLoading && materials.length > 0 ? <div className="flex">
+                {!isLoading && materials.length > 0 ? <div className="flex flex-row flex-wrap">
                     {materials.map(m =>
-                        <div key={m.id} className="w-3/12 mr-2 block p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+                        <div key={m.id} className="w-2/12 mr-2 mb-3 block p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
                             <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{m.name}</h5>
                             <p>Measurement: {m.mesurements[0].name}</p>
                         </div>)}

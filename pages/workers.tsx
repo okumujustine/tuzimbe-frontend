@@ -40,6 +40,11 @@ const WorkersPage: NextPage = () => {
 
     const onAddWorker = async () => {
 
+        if (!firstName || !lastName || !rate) {
+            alert("Make sure rate, first name and last name are all entered")
+            return
+        }
+
         const workers_or_error = await addWorker({
             first_name: firstName,
             last_name: lastName,
@@ -49,6 +54,7 @@ const WorkersPage: NextPage = () => {
         if (typeof workers_or_error !== "string") {
             const new_workers_list = [...workers, workers_or_error]
             setWorkers(new_workers_list)
+            alert(`${firstName} ${lastName} successfully added!`)
         } else {
             setError(workers_or_error)
         }
