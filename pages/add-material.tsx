@@ -7,6 +7,7 @@ import { getMeasurementMethods } from '../resource/getMeasurementMethods'
 import { delaySemulator } from '../helpers/utils'
 import { MeasurementMethod } from '../helpers/materials/types'
 import { addMaterial } from '../resource/addMaterial'
+import { toastError, toastSuccess } from '../helpers/toast'
 
 const AddMaterial: NextPage = () => {
 
@@ -40,14 +41,14 @@ const AddMaterial: NextPage = () => {
 
     const onAddMaterial = async () => {
         if (!measurementMethod || !name) {
-            alert("Make sure to enter name and chose a measurement method please!")
+            toastError("Make sure to enter name and chose a measurement method please!")
             return
         }
         await addMaterial({
             name: name,
             measurement_method: parseInt(measurementMethod, 10)
         })
-        alert("material successfully added")
+        toastSuccess("material successfully added")
         setName("")
         setMeasurementMethod("")
     }

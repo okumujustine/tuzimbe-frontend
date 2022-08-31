@@ -6,6 +6,7 @@ import DatePicker from "react-datepicker";
 import CustomModal from '../components/public/Modal'
 import Title from '../components/text/Title'
 import ClientWrapper from '../components/wrappers/ClientWrapper'
+import { toastError, toastSuccess } from '../helpers/toast';
 import { delaySemulator, timeFromDateTime, todaysDate } from '../helpers/utils'
 import { WorkerAttendance } from '../helpers/workers/types'
 import { addDepartureTime } from '../resource/addDepartureTime';
@@ -51,7 +52,7 @@ const Home: NextPage = () => {
 
   const updateAttendance = async () => {
     if (!departureTime) {
-      alert("Enter departure time please")
+      toastError("Enter departure time please")
       return
     }
     const dt = departureTime.toJSON()
@@ -64,14 +65,14 @@ const Home: NextPage = () => {
     })
 
     if (index === -1) {
-      alert("Please select attendance")
+      toastError("Please select attendance")
     } else {
       const obj = attendance[index]
       obj.departure_time = dt
       attendance.splice(index, 1)
       setAttendance([...attendance, obj])
     }
-    alert(`departure time for ${selectedAttendance?.worker.first_name} ${selectedAttendance?.worker.last_name} succefully updated`)
+    toastSuccess(`departure time for ${selectedAttendance?.worker.first_name} ${selectedAttendance?.worker.last_name} succefully updated`)
     setIsOpen(false)
   }
 

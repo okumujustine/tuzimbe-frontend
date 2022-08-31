@@ -4,6 +4,7 @@ import CustomModal from '../components/public/Modal'
 import Title from '../components/text/Title'
 
 import ClientWrapper from '../components/wrappers/ClientWrapper'
+import { toastError, toastSuccess } from '../helpers/toast'
 import { delaySemulator } from '../helpers/utils'
 import { Workers } from '../helpers/workers/types'
 import { addWorker } from '../resource/addWorker'
@@ -40,8 +41,17 @@ const WorkersPage: NextPage = () => {
 
     const onAddWorker = async () => {
 
-        if (!firstName || !lastName || !rate) {
-            alert("Make sure rate, first name and last name are all entered")
+        if (!firstName) {
+            toastError("Firts name is required!")
+            return
+        }
+        if (!lastName) {
+            toastError("Last name is required!")
+            return
+        }
+
+        if (!rate) {
+            toastError("Rate is required!")
             return
         }
 
@@ -54,9 +64,13 @@ const WorkersPage: NextPage = () => {
         if (typeof workers_or_error !== "string") {
             const new_workers_list = [...workers, workers_or_error]
             setWorkers(new_workers_list)
-            alert(`${firstName} ${lastName} successfully added!`)
+            toastSuccess(`${firstName} ${lastName} successfully added!`)
+            setFirstName("")
+            setLastName("")
+            setRate("")
         } else {
             setError(workers_or_error)
+            toastError(workers_or_error)
         }
         setIsOpen(false)
 

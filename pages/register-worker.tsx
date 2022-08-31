@@ -10,6 +10,8 @@ import { Workers } from '../helpers/workers/types'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { addWorkersAttendance } from '../resource/addWorkerAttendance'
+import { toast } from 'react-toastify';
+import { toastError, toastSuccess } from '../helpers/toast'
 
 const RegisterWorker: NextPage = () => {
     const [searchResults, setSearchResults] = useState<any[]>([])
@@ -28,8 +30,7 @@ const RegisterWorker: NextPage = () => {
             await delaySemulator(1000)
             setSearchResults(new_searched_workers)
         } else {
-            // setError(workers_or_error)
-            console.log("error feching use")
+            toastError(searchedWorkers)
         }
         return true
     }
@@ -46,7 +47,7 @@ const RegisterWorker: NextPage = () => {
 
     const onAddAttendance = async () => {
         if (!startDate || !workerRate) {
-            alert("All fields are required")
+            toastError("All fields are required")
             return
         }
         const att = await addWorkersAttendance({
@@ -56,12 +57,11 @@ const RegisterWorker: NextPage = () => {
             "added_date": todaysDate()
         })
         if (typeof att !== "string") {
-            alert("User added successfully")
+            toastSuccess("User added successfully")
             setSelectedWorker(null)
         } else {
-            alert(att)
+            toastError(att)
             setSelectedWorker(null)
-            // setError("error:dailyAttendance")
             // setLoading(false)
         }
     }

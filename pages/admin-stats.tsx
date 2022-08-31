@@ -9,6 +9,7 @@ import CustomModal from '../components/public/Modal';
 import { fomatDate } from '../helpers/utils';
 import { materialsUsageStats } from '../resource/materialsUsageStats';
 import { MaterialsUsageStatsResp } from '../helpers/workers/types';
+import { toastError } from '../helpers/toast';
 
 type DateRangeDate = {
     startDate: Date
@@ -51,7 +52,7 @@ const AdminStats: NextPage = () => {
         if (typeof stats !== "string") {
             setStats(stats)
         } else {
-            alert(stats)
+            toastError(stats)
         }
         setIsOpen(false)
         setLoading(false)
@@ -67,7 +68,7 @@ const AdminStats: NextPage = () => {
         if (typeof stats !== "string") {
             setStats(stats)
         } else {
-            alert(stats)
+            toastError(stats)
         }
         setIsOpen(false)
         setLoading(false)

@@ -8,6 +8,7 @@ import { Materials } from '../helpers/materials/types'
 import { addMaterialUsage } from '../resource/addMaterialUsage'
 import Title from '../components/text/Title'
 import Back from '../components/Button/Back'
+import { toastError, toastSuccess } from '../helpers/toast'
 
 const AddMaterialUsage: NextPage = () => {
     const [searchResults, setSearchResults] = useState<any[]>([])
@@ -40,7 +41,8 @@ const AddMaterialUsage: NextPage = () => {
 
     const onAddMaterialUsage = async () => {
         if (!selectedMaterial || !measurementMethod || !materialPrice || !materialQty) {
-            alert("select measurementMethod, set materialQty and set materialPrice")
+            toastError("select measurementMethod, set materialQty and set materialPrice")
+
             return
         }
         await addMaterialUsage({
@@ -49,7 +51,7 @@ const AddMaterialUsage: NextPage = () => {
             quantity: parseInt(materialQty as unknown as string, 10),
             price: parseInt(materialPrice as unknown as string, 10)
         })
-        alert("material usage successfully added")
+        toastSuccess("material usage successfully added")
         setSelecetedMaterial(null)
     }
 
